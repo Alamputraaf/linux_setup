@@ -6,4 +6,103 @@ mkdir ~/.steam/root/compatibilitytools.d
         
 tar -xf GE-Proton*.tar.gz -C ~/.steam/root/compatibilitytools.d/
 
-    
+
+
+https://dbeley.ovh/en/post/2023/03/23/the-mangohud-presets-used-by-the-steam-deck/
+
+How to get the files
+
+A word about getting the configuration files: when enabling a MangoHud preset, SteamOS will write a temporary file in /tmp which will be named mangohud.XXXXXXXX (XXXXXXXX being a random sequence of alphanumeric characters).
+
+By activating all the presets and then exploring the /tmp folder from Desktop mode, it is possible to recover all the configuration files.
+MangoHud config files
+
+If you want to reuse the configuration files as they are, you can remove the fsr_steam_sharpness and nis_steam_sharpness statements which are specific to the Steam Deck (or more precisely to Gamescope, the compositor which allows the Steam Deck to make use of FSR).
+
+In order to configure MangoHud on another computer, you will just need to put the content of one of the presets in the file ~/.config/MangoHud/MangoHud.conf so that MangoHud finds the configuration. In the case of Steam games, don’t forget to set the game launch command to mangohud %command%.
+Preset 0 (disabled)
+
+This preset disables MangoHud.
+
+no_display
+
+Preset 1
+
+This preset only displays the FPS counter.
+
+control=mangohud
+fsr_steam_sharpness=5
+nis_steam_sharpness=10
+frame_timing=0
+cpu_stats=0
+gpu_stats=0
+fps=1
+fps_only
+legacy_layout=0
+width=40
+frametime=0
+
+Preset 2
+
+This preset displays a horizontal performance summary. This is the setting I use the most, it is not very intrusive while displaying the most important information.
+
+control=mangohud
+fsr_steam_sharpness=5
+nis_steam_sharpness=10
+legacy_layout=0
+horizontal
+battery
+gpu_stats
+cpu_stats
+cpu_power
+gpu_power
+ram
+fps
+frametime=0
+hud_no_margin
+table_columns=14
+frame_timing=1
+
+Preset 3
+
+This is the “normal” preset, which remains compact while showing more information than the previous preset (especially the temperatures).
+
+control=mangohud
+fsr_steam_sharpness=5
+nis_steam_sharpness=10
+cpu_temp
+gpu_temp
+ram
+vram
+io_read
+io_write
+arch
+gpu_name
+cpu_power
+gpu_power
+wine
+frametime
+battery
+
+Preset 4
+
+This preset is the most complete but it is also the most intrusive.
+
+control=mangohud
+fsr_steam_sharpness=5
+nis_steam_sharpness=10
+full
+cpu_temp
+gpu_temp
+ram
+vram
+io_read
+io_write
+arch
+gpu_name
+cpu_power
+gpu_power
+wine
+frametime
+battery
+
